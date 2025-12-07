@@ -21,7 +21,6 @@ namespace BuberDinner.Infrastructure.Authentication
 
         public string GenerateToken(Guid userId, string firstName, string lastName)
         {
-
             var signingCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(
                     Encoding.UTF8.GetBytes(_jwtSettings.Secret)),
