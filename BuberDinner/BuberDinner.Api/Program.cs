@@ -1,9 +1,15 @@
+using BuberDinner.Application;
+using BuberDinner.Application.Services.Authentication;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 {
     builder.Services.AddControllers();
-    
+
+    builder.Services.AddApplicationService();
+    builder.Services.AddInfrastructureService();
+
     builder.Services.AddEndpointsApiExplorer(); 
     builder.Services.AddSwaggerGen(); 
 }
