@@ -1,3 +1,4 @@
+using BuberDinner.Api.Filters;
 using BuberDinner.Api.Middleware;
 using BuberDinner.Application;
 using BuberDinner.Application.Services.Authentication;
@@ -6,7 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 {
-    builder.Services.AddControllers();
+    builder.Services.AddControllers(options => 
+        options.Filters.Add<ErrorHandlingFilterAttribute>());
 
     builder.Services.AddApplicationService();
     builder.Services.AddInfrastructureService(builder.Configuration);
@@ -25,7 +27,7 @@ var app = builder.Build();
         app.UseSwaggerUI(); 
     }
 
-    app.UseMiddleware<ErrorHandlingMiddleware>();
+    //app.UseMiddleware<ErrorHandlingMiddleware>();
     app.UseHttpsRedirection();
     app.MapControllers();
 
