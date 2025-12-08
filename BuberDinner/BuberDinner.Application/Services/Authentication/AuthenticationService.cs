@@ -2,7 +2,7 @@
 using BuberDinner.Application.Common.Interfaces.Authentication;
 using BuberDinner.Application.Common.Interfaces.Persistence;
 using BuberDinner.Domain.Entities;
-using OneOf;
+using FluentResults;
 
 namespace BuberDinner.Application.Services.Authentication
 {
@@ -18,12 +18,12 @@ namespace BuberDinner.Application.Services.Authentication
             _userRepository = userRepository;
         }
 
-        public OneOf<AuthenticationResult, IError> Register(string firstName, string lastName, string email, string password)
+        public Result<AuthenticationResult> Register(string firstName, string lastName, string email, string password)
         {
             // Check if user already exists
             if(_userRepository.GetUserByEmail(email) is not null)
             {
-                return new DuplicateEmailError();
+                return Result.Fail<AuthenticationResult>(new DuplicateEmailError());
             }
 
             // Create user (generate uniqueId) & persist to DB
@@ -41,8 +41,8 @@ namespace BuberDinner.Application.Services.Authentication
             var token = _jwtTokenGenerator.GenerateToken(user);
 
             return new AuthenticationResult(user, token);
-
         }
+
         public AuthenticationResult Login(string email, string password)
         {
             // Validate the user exists
