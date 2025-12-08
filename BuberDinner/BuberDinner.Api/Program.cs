@@ -7,8 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 {
-    builder.Services.AddControllers(options => 
-        options.Filters.Add<ErrorHandlingFilterAttribute>());
+    builder.Services.AddControllers();
 
     builder.Services.AddApplicationService();
     builder.Services.AddInfrastructureService(builder.Configuration);
