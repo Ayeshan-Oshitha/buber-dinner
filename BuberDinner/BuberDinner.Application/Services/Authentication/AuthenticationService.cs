@@ -2,6 +2,7 @@
 using BuberDinner.Application.Common.Interfaces.Authentication;
 using BuberDinner.Application.Common.Interfaces.Persistence;
 using BuberDinner.Domain.Entities;
+using OneOf;
 
 namespace BuberDinner.Application.Services.Authentication
 {
@@ -17,12 +18,12 @@ namespace BuberDinner.Application.Services.Authentication
             _userRepository = userRepository;
         }
 
-        public AuthenticationResult Register(string firstName, string lastName, string email, string password)
+        public OneOf<AuthenticationResult, IError> Register(string firstName, string lastName, string email, string password)
         {
             // Check if user already exists
             if(_userRepository.GetUserByEmail(email) is not null)
             {
-                throw new DuplicateEmailException();
+                return new DuplicateEmailError();
             }
 
             // Create user (generate uniqueId) & persist to DB
