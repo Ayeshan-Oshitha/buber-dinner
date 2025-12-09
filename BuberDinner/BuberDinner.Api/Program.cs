@@ -1,8 +1,5 @@
 using BuberDinner.Api.Common.Errors;
-using BuberDinner.Api.Filters;
-using BuberDinner.Api.Middleware;
 using BuberDinner.Application;
-using BuberDinner.Application.Services.Authentication;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,7 +27,6 @@ var app = builder.Build();
         app.UseSwaggerUI(); 
     }
   
-    app.UseExceptionHandler("/error");
     app.UseHttpsRedirection();
     app.MapControllers();
 
