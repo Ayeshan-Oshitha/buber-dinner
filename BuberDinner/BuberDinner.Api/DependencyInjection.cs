@@ -1,6 +1,7 @@
 ﻿using BuberDinner.Api.Common.Errors;
 using BuberDinner.Api.Common.Mapping;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.OpenApi.Models;
 
 namespace BuberDinner.Api
 {
@@ -8,6 +9,9 @@ namespace BuberDinner.Api
     {
         public static IServiceCollection AddPresentationService(this IServiceCollection services)
         {
+
+            services.AddSwaggerAuth();
+
             services.AddControllers();
 
             services.AddSingleton<ProblemDetailsFactory, BuberDinnerProblemDetailsFactory>();
@@ -16,5 +20,39 @@ namespace BuberDinner.Api
 
             return services;
         }
+
+        public static IServiceCollection AddSwaggerAuth(this IServiceCollection services)
+        {
+            services.AddSwaggerGen(option =>
+            {
+                option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "Enter your JWT token"
+                });
+
+                option.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        Array.Empty<string>()
+                    }
+                });
+            });
+
+            return services;
+        }
+
     }
 }
