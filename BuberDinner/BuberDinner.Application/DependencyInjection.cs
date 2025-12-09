@@ -16,9 +16,9 @@ namespace BuberDinner.Application
         {
            services.AddMediatR(typeof(DependencyInjection).Assembly);
 
-            services.AddScoped<
-                IPipelineBehavior<RegisterCommand, ErrorOr<AuthenticationResult>>,
-                ValidationRegisterCommandBehaviour>();
+            services.AddScoped(
+                typeof(IPipelineBehavior<,>),
+                typeof(ValidationBehaviour<,>));
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
