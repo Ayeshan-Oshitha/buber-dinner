@@ -1,7 +1,7 @@
 ﻿using BuberDinner.Domain.Common.Models;
-using BuberDinner.Domain.Menu.ValueObjects;
+using BuberDinner.Domain.MenuAggregate.ValueObjects;
 
-namespace BuberDinner.Domain.Menu.Entites
+namespace BuberDinner.Domain.MenuAggregate.Entites
 {
     public sealed class MenuSection : Entity<MenuSectionId>
     {
@@ -17,12 +17,23 @@ namespace BuberDinner.Domain.Menu.Entites
                 Description = description;
         }
 
-        public static MenuSection Create(string name, string description)
+        public static MenuSection Create(string name, string description, List<MenuItem> items)
         {
-            return new MenuSection(
+            //return new MenuSection(
+            //    MenuSectionId.CreateUnique(),
+            //    name,
+            //    description);
+
+            // GPT answer - to resolve tutorial mistamtch problem
+
+            var section = new MenuSection(
                 MenuSectionId.CreateUnique(),
                 name,
                 description);
+
+            section._items.AddRange(items);
+
+            return section;
         }
 
     }

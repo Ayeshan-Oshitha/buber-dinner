@@ -1,4 +1,5 @@
-﻿namespace BuberDinner.Domain.Entities
+﻿// Created before adding DDD patterns 
+namespace BuberDinner.Domain.Entities
 {
     public class User
     {

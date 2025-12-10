@@ -1,7 +1,7 @@
 ﻿using BuberDinner.Domain.Common.Models;
-using BuberDinner.Domain.Menu.ValueObjects;
+using BuberDinner.Domain.MenuAggregate.ValueObjects;
 
-namespace BuberDinner.Domain.Menu.Entites
+namespace BuberDinner.Domain.MenuAggregate.Entites
 {
     public sealed class MenuItem : Entity<MenuItemId>
     {

@@ -1,12 +1,12 @@
 ﻿using BuberDinner.Domain.Common.Models;
 using BuberDinner.Domain.Common.ValueObjects;
-using BuberDinner.Domain.Dinner.ValueObjects;
-using BuberDinner.Domain.Host.ValueObjects;
-using BuberDinner.Domain.Menu.Entites;
-using BuberDinner.Domain.Menu.ValueObjects;
-using BuberDinner.Domain.MenuReview.ValueObjects;
+using BuberDinner.Domain.DinnerAggregate.ValueObjects;
+using BuberDinner.Domain.HostAggregate.ValueObjects;
+using BuberDinner.Domain.MenuAggregate.Entites;
+using BuberDinner.Domain.MenuAggregate.ValueObjects;
+using BuberDinner.Domain.MenuReviewAggregate.ValueObjects;
 
-namespace BuberDinner.Domain.Menu
+namespace BuberDinner.Domain.MenuAggregate
 {
     public sealed class Menu : AggregateRoot<MenuId>
     {
@@ -41,17 +41,33 @@ namespace BuberDinner.Domain.Menu
         }
 
         public static Menu Create(
+            HostId hostId,
             string name,
             string description,
-            HostId hostId)
+            List<MenuSection> sections
+            )
         {
-            return new(
+            //return new(
+            //    MenuId.CreateUnique(),
+            //    name,
+            //    description,
+            //    hostId,
+            //    DateTime.UtcNow,
+            //    DateTime.UtcNow
+            //    );
+
+            // GPT answer - to resolve tutorial mistamtch problem
+            var menu = new Menu(
                 MenuId.CreateUnique(),
                 name,
                 description,
                 hostId,
                 DateTime.UtcNow,
                 DateTime.UtcNow);
+
+            menu._sections.AddRange(sections);
+
+            return menu;
 
         }
     }
