@@ -29,6 +29,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{7E9240C1-6
 		DomainModel.md = DomainModel.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain Models", "Domain Models", "{E38A813F-490A-4C5B-9F9A-37DA44B23E68}"
+	ProjectSection(SolutionItems) = preProject
+		Aggregates.Menu.md = Aggregates.Menu.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +70,7 @@ Global
 		{3513A16E-1CD8-437D-8AC1-26E8A17CCB78} = {0760124D-94A5-4C51-A2C9-3061F888B877}
 		{B305AB0B-EB83-4B03-BB11-93F30CC9E593} = {4ACC040A-A2C8-44FF-B00E-CFAFCBE09995}
 		{C66018EB-9611-4AD7-B774-2FE108C8E982} = {C7C31E81-68E7-42B3-97C8-423A0F74333D}
+		{E38A813F-490A-4C5B-9F9A-37DA44B23E68} = {7E9240C1-600A-438A-9760-25EB20B95589}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9DC63A47-D74F-4C24-8138-EE5F94DB463F}
