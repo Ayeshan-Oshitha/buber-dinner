@@ -3,6 +3,7 @@ using BuberDinner.Domain.Common.ValueObjects;
 using BuberDinner.Domain.DinnerAggregate.ValueObjects;
 using BuberDinner.Domain.HostAggregate.ValueObjects;
 using BuberDinner.Domain.MenuAggregate.Entites;
+using BuberDinner.Domain.MenuAggregate.Events;
 using BuberDinner.Domain.MenuAggregate.ValueObjects;
 using BuberDinner.Domain.MenuReviewAggregate.ValueObjects;
 
@@ -66,6 +67,7 @@ namespace BuberDinner.Domain.MenuAggregate
                 DateTime.UtcNow,
                 DateTime.UtcNow);
 
+            menu.AddDomainEvent(new MenuCreated(menu));
             menu._sections.AddRange(sections);
 
             return menu;
