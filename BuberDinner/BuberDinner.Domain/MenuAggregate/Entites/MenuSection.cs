@@ -6,8 +6,8 @@ namespace BuberDinner.Domain.MenuAggregate.Entites
     public sealed class MenuSection : Entity<MenuSectionId>
     {
         private readonly List<MenuItem> _items = new();
-        public string Name { get; }
-        public string Description { get; }
+        public string Name { get; private set; }
+        public string Description { get; private set; }
         public IReadOnlyList<MenuItem> Items => _items.AsReadOnly();
 
         private MenuSection(MenuSectionId menuSectionId, string name, string description)
@@ -34,6 +34,11 @@ namespace BuberDinner.Domain.MenuAggregate.Entites
             section._items.AddRange(items);
 
             return section;
+        }
+
+        private MenuSection()
+        {
+            // For EFCore
         }
 
     }
